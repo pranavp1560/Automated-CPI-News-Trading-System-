@@ -1,0 +1,47 @@
+mt5:
+  login: 12345678
+  password: "your_password"
+  server: "BrokerName-Demo"
+  timeout: 10000
+
+trading:
+  timeframe: "M5"
+  ema_period: 50
+  ema_lookback_candles: 200
+  risk_reward_ratio: 3
+  lot_size: 0.01              # Default lot size; override per symbol if needed
+  magic_number: 20240101      # Unique ID to identify bot's orders
+  slippage: 10                # Max slippage in points
+  deviation: 20
+  symbol_prefix: ""           # Broker symbol prefix (e.g. "m")
+  symbol_suffix: ""           # Broker symbol suffix (e.g. ".ecn", "m")
+
+calendar:
+  fetch_interval_hours: 24     # Frequency of daily refresh from Faireconomy/Forex Factory
+  pre_event_monitor_minutes: 15
+  api_provider: "forex_factory" # or "trading_economics" / "fmp"
+  api_key: ""                  # Set in .env if required
+  cache_expiry_hours: 12       # If local cache is younger than this, use cache on startup
+
+allowed_currencies:
+  - AUD
+  - GBP
+  - EUR
+  - NZD
+  - CAD
+  - CHF
+  - JPY
+
+ignored_currencies:
+  - USD
+
+aud_special_rule:
+  enabled: true
+  reversal_before_hour: 8     # Reverse signal if AUD CPI is before 08:00 local
+  local_timezone: "Australia/Sydney" # ABS release timezone
+
+logging:
+  level: "INFO"
+  log_file: "logs/cpi_system.log"
+  max_bytes: 10485760
+  backup_count: 5
